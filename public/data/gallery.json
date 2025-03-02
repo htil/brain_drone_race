@@ -1,0 +1,22 @@
+[
+    {
+      "type": "video",
+      "src": "https://player.vimeo.com/video/829827549",
+      "title": "Team Practice Session",
+      "description": "Our team practicing with the latest BCI technology"
+    },
+    {
+      "type": "video",
+      "src": "https://www.youtube.com/embed/-1TdAWCGu2c",
+      "title": "Brain-Drone Racing Demo",
+      "description": "Watch our team demonstrate brain-controlled drone racing"
+    },
+    {
+      "type": "video",
+      "src": "https://chrissmithcrawford.com/media/cbs.mp4",
+      "title": "National News Coverage",
+      "description": "Our team featured on national television for our innovative work."
+    }
+  ]
+  
+  

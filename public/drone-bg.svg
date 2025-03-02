@@ -1,0 +1,10 @@
+<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="drone-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+      <path d="M50 15 L65 35 L50 55 L35 35 Z" fill="none" stroke="#9E1B32" stroke-width="2" opacity="0.2" />
+      <circle cx="50" cy="35" r="3" fill="#9E1B32" opacity="0.2" />
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#drone-pattern)" />
+</svg>
+

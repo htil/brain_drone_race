@@ -1,0 +1,40 @@
+[
+    {
+      "name": "Myles Lewis",
+      "imgSrc": "./imgs/myles.png",
+      "classification": "PhD student ('26)",
+      "yearbookQuote": "don't think too hard! your dreams might actually come true...",
+      "linkedinUrl": "https://www.linkedin.com/in/myles-lewis-4893a5272/"
+    },
+    {
+      "name": "Wesley Junkins",
+      "imgSrc": "./imgs/wesley.png",
+      "classification": "Graduate Student('26)",
+      "yearbookQuote": "It is what it is, but it can be what it could be.",
+      "linkedinUrl": "https://www.linkedin.com/in/wesleyjunkins/"
+    },
+    {
+      "name": "Pranay Joshi",
+      "imgSrc": "./imgs/pranay.png",
+      "classification": "Sophomore('27)",
+      "yearbookQuote": "Future can't be Predicted.",
+      "linkedinUrl": "https://www.linkedin.com/in/pranay-joshi-/"
+    },
+    {
+      "name": "Vincent Ingram",
+      "imgSrc": "./imgs/vincent.png",
+      "classification": "PHD Student('28)",
+      "yearbookQuote": "There’s never enough time in the day—unless sleep is optional.",
+      "linkedinUrl": "https://www.linkedin.com/in/vincentingram07/"
+
+    },
+    {
+      "name": "Jayden Brooks",
+      "imgSrc": "./imgs/jayden.png",
+      "classification": "Undergraduate Student (‘26)",
+      "yearbookQuote": "Make the hard choices now for an easier future",
+      "linkedinUrl": "https://www.linkedin.com/in/jayden-brooks/"
+    }
+  ]
+  
+  
