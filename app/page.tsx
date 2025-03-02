@@ -360,7 +360,7 @@ export default function Home() {
               href="#"
               className="inline-flex items-center bg-[#9E1B32] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#7A1526] transition duration-300"
             >
-              Apply Now <ChevronRight className="ml-2" />
+              Comming Soon!  <ChevronRight className="ml-2" />
             </Link>
           </div>
         </section>
