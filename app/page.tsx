@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { ChevronRight, Trophy, Calendar } from "lucide-react";
 import {
   Carousel,
@@ -13,6 +14,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { LinkedInLogoIcon } from "@radix-ui/react-icons";
+import CalendlyEmbed from "@/components/calendly_embed";
 
 interface GalleryItem {
   type: string;
@@ -45,6 +47,7 @@ export default function Home() {
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [events, setEvents] = useState<Event[]>([]);
+  const router = useRouter();
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
 
   useEffect(() => {
@@ -70,6 +73,16 @@ export default function Home() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -81,7 +94,7 @@ export default function Home() {
     <div className="min-h-screen bg-white text-gray-900">
       <header className="bg-[#9E1B32] text-white py-4 fixed w-full z-50">
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">UA Brain Drone Race Team</h1>
+          <h1 className="text-2xl font-bold cursor-pointer" onClick={()=> router.push("/")}>UA Brain Drone Race Team</h1>
           <nav>
             <ul className="flex space-x-4">
               <li>
@@ -162,11 +175,12 @@ export default function Home() {
               Control drones with your mind at the University of Alabama
             </p>
             <button
-              onClick={() => scrollToSection("about")}
-              className="bg-[#9E1B32] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#7A1526] transition duration-300"
+              onClick={() => router.push("/schedule")}
+              className="bg-[#9E1B32] text-white px-12 py-6 rounded-full font-semibold hover:bg-[#7A1526] transition duration-300 text-2xl"
             >
-              Learn More
+              Schedule Now !!
             </button>
+            
           </div>
         </section>
 
