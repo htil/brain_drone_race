@@ -1,0 +1,164 @@
+[
+    {
+      "id": 1,
+      "name": "Jane Doe",
+      "university": "University of Alabama",
+      "bestTime": "01:21.87",
+      "averageTime": "01:22.66",
+      "wins": 2,
+      "losses": 0,
+      "totalRaces": 2
+    },
+    {
+      "id": 5,
+      "name": "Emily Johnson",
+      "university": "University of Alabama",
+      "bestTime": "01:22.76",
+      "averageTime": "01:22.76",
+      "wins": 1,
+      "losses": 0,
+      "totalRaces": 1
+    },
+    {
+      "id": 4,
+      "name": "Sarah Williams",
+      "university": "MIT",
+      "bestTime": "01:23.45",
+      "averageTime": "01:24.32",
+      "wins": 1,
+      "losses": 1,
+      "totalRaces": 2
+    },
+    {
+      "id": 8,
+      "name": "Lisa Chen",
+      "university": "UC Berkeley",
+      "bestTime": "01:24.12",
+      "averageTime": "01:24.12",
+      "wins": 1,
+      "losses": 0,
+      "totalRaces": 1
+    },
+    {
+      "id": 6,
+      "name": "David Lee",
+      "university": "Stanford",
+      "bestTime": "01:24.51",
+      "averageTime": "01:24.51",
+      "wins": 0,
+      "losses": 1,
+      "totalRaces": 1
+    },
+    {
+      "id": 2,
+      "name": "Alex Johnson",
+      "university": "Georgia Tech",
+      "bestTime": "01:28.92",
+      "averageTime": "01:28.92",
+      "wins": 0,
+      "losses": 1,
+      "totalRaces": 1
+    },
+    {
+      "id": 3,
+      "name": "Michael Brown",
+      "university": "University of Alabama",
+      "bestTime": "01:27.33",
+      "averageTime": "01:27.33",
+      "wins": 0,
+      "losses": 1,
+      "totalRaces": 1
+    },
+    {
+      "id": 7,
+      "name": "John Smith",
+      "university": "University of Alabama",
+      "bestTime": "01:26.44",
+      "averageTime": "01:26.44",
+      "wins": 0,
+      "losses": 1,
+      "totalRaces": 1
+    },
+    {
+      "id": 9,
+      "name": "Robert Wilson",
+      "university": "University of Florida",
+      "bestTime": "N/A",
+      "averageTime": "N/A",
+      "wins": 0,
+      "losses": 0,
+      "totalRaces": 0
+    },
+    {
+      "id": 10,
+      "name": "Amanda Taylor",
+      "university": "UCLA",
+      "bestTime": "N/A",
+      "averageTime": "N/A",
+      "wins": 0,
+      "losses": 0,
+      "totalRaces": 0
+    },
+    {
+      "id": 11,
+      "name": "Kevin Martinez",
+      "university": "University of Michigan",
+      "bestTime": "N/A",
+      "averageTime": "N/A",
+      "wins": 0,
+      "losses": 0,
+      "totalRaces": 0
+    },
+    {
+      "id": 12,
+      "name": "Sophia Garcia",
+      "university": "University of Texas",
+      "bestTime": "N/A",
+      "averageTime": "N/A",
+      "wins": 0,
+      "losses": 0,
+      "totalRaces": 0
+    },
+    {
+      "id": 13,
+      "name": "Daniel Thompson",
+      "university": "Ohio State University",
+      "bestTime": "N/A",
+      "averageTime": "N/A",
+      "wins": 0,
+      "losses": 0,
+      "totalRaces": 0
+    },
+    {
+      "id": 14,
+      "name": "Olivia Rodriguez",
+      "university": "Penn State",
+      "bestTime": "N/A",
+      "averageTime": "N/A",
+      "wins": 0,
+      "losses": 0,
+      "totalRaces": 0
+    },
+    {
+      "id": 15,
+      "name": "Thomas Anderson",
+      "university": "University of Washington",
+      "bestTime": "N/A",
+      "averageTime": "N/A",
+      "wins": 0,
+      "losses": 0,
+      "totalRaces": 0
+    },
+    {
+      "id": 16,
+      "name": "Emma Davis",
+      "university": "University of Oregon",
+      "bestTime": "N/A",
+      "averageTime": "N/A",
+      "wins": 0,
+      "losses": 0,
+      "totalRaces": 0
+    }
+  ]
+  
+  

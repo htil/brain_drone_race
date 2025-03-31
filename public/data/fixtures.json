@@ -1,0 +1,83 @@
+{
+  "tournamentName": "Spring 2025 Brain Drone Racing Championship",
+  "rounds": [
+    {
+      "name": "Quarter Finals",
+      "matches": [
+        {
+          "id": 1,
+          "player1": { "id": 1, "name": "Gaurav"},
+          "player2": { "id": 5, "name": "Gryson"},
+          "status": "scheduled",
+          "winner":0,
+          "time": "April 5, 2025",
+          "time1": "Rank 1",
+          "time2": "Rank 5"
+        },
+        {
+          "id": 2,
+          "player1": { "id": 2, "name": "Ian"},
+          "player2": { "id": 6, "name": "Tierra"},
+          "status": "scheduled",
+          "winner":0,
+          "time": "April 5, 2025",
+          "time1": "Rank 2",
+          "time2": "Rank 6"
+        },
+        {
+          "id": 3,
+          "player1": { "id": 3, "name": "Kavya"},
+          "player2": { "id": 7, "name": "Naya"},
+          "status": "scheduled",
+          "winner":0,
+          "time": "April 5, 2025",
+          "time1": "Rank 3",
+          "time2": "Rank 7"
+        },
+        {
+          "id": 4,
+          "player1": { "id": 4, "name": "Austin"},
+          "player2": { "id": 8, "name": "Prince"},
+          "status": "scheduled",
+          "winner":0,
+          "time": "April 5, 2025",
+          "time1": "Rank 4",
+          "time2": "Rank 8"
+        }
+      ]
+    },
+    {
+      "name": "Semi Finals",
+      "matches": [
+        {
+          "id": 5,
+          "player1": { "id": 1, "name": "Winner B-1", "university": "University of Alabama" },
+          "player2": { "id": 4, "name": "Winner B-2", "university": "MIT" },
+          "status": "scheduled",
+          "winner": 0,
+          "time": "April 5, 2025"
+        },
+        {
+          "id": 6,
+          "player1": { "id": 5, "name": "Winner B-3"},
+          "player2": { "id": 8, "name": "Winner B-4"},
+          "status": "scheduled",
+          "winner":0,
+          "time": "April 5, 2025"
+        }
+      ]
+    },
+    {
+      "name": "Final",
+      "matches": [
+        {
+          "id": 7,
+          "player1": null,
+          "player2": null,
+          "status": "pending"
+        }
+      ]
+    }
+  ]
+}
+

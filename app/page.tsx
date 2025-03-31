@@ -118,10 +118,18 @@ export default function Home() {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection("achievements")}
+                  onClick={() => ("achievements")}
                   className="hover:underline"
                 >
                   Achievements
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => router.push("/tournament")}
+                  className="hover:underline"
+                >
+                  Tournament
                 </button>
               </li>
               <li>
