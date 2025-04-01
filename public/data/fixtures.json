@@ -7,42 +7,42 @@
         {
           "id": 1,
           "player1": { "id": 1, "name": "Gaurav"},
-          "player2": { "id": 5, "name": "Gryson"},
+          "player2": { "id": 5, "name": "Naya"},
           "status": "scheduled",
           "winner":0,
           "time": "April 5, 2025",
           "time1": "Rank 1",
-          "time2": "Rank 5"
+          "time2": "Rank 8"
         },
         {
           "id": 2,
           "player1": { "id": 2, "name": "Ian"},
-          "player2": { "id": 6, "name": "Tierra"},
+          "player2": { "id": 7, "name": "Atta"},
           "status": "scheduled",
           "winner":0,
           "time": "April 5, 2025",
           "time1": "Rank 2",
-          "time2": "Rank 6"
+          "time2": "Rank 7"
         },
         {
           "id": 3,
           "player1": { "id": 3, "name": "Kavya"},
-          "player2": { "id": 7, "name": "Naya"},
+          "player2": { "id": 6, "name": "Tierra"},
           "status": "scheduled",
           "winner":0,
           "time": "April 5, 2025",
           "time1": "Rank 3",
-          "time2": "Rank 7"
+          "time2": "Rank 6"
         },
         {
           "id": 4,
           "player1": { "id": 4, "name": "Austin"},
-          "player2": { "id": 8, "name": "Prince"},
+          "player2": { "id": 5, "name": "Grayson"},
           "status": "scheduled",
           "winner":0,
           "time": "April 5, 2025",
           "time1": "Rank 4",
-          "time2": "Rank 8"
+          "time2": "Rank 5"
         }
       ]
     },
