@@ -27,7 +27,7 @@
         {
           "id": 3,
           "player1": { "id": 3, "name": "Kavya"},
-          "player2": { "id": 6, "name": "Tierra"},
+          "player2": { "id": 6, "name": "Tiara"},
           "status": "scheduled",
           "winner":0,
           "time": "April 5, 2025",
