@@ -54,7 +54,7 @@
           "player1": { "id": 1, "name": "Gaurav", "university": "University of Alabama" },
           "player2": { "id": 2, "name": "Ian", "university": "MIT" },
           "status": "scheduled",
-          "winner": 0,
+          "winner": 2,
           "time": "April 5, 2025"
         },
         {
@@ -72,7 +72,7 @@
       "matches": [
         {
           "id": 7,
-          "player1": null,
+          "player1": { "id": 2, "name": "Ian"},
           "player2": null,
           "status": "pending"
         }
