@@ -39,7 +39,7 @@
           "player1": { "id": 4, "name": "Austin"},
           "player2": { "id": 5, "name": "Grayson"},
           "status": "scheduled",
-          "winner":0,
+          "winner":5,
           "time": "April 5, 2025",
           "time1": "Rank 4",
           "time2": "Rank 5"
@@ -52,15 +52,15 @@
         {
           "id": 5,
           "player1": { "id": 1, "name": "Gaurav", "university": "University of Alabama" },
-          "player2": { "id": 4, "name": "Ian", "university": "MIT" },
+          "player2": { "id": 2, "name": "Ian", "university": "MIT" },
           "status": "scheduled",
           "winner": 0,
           "time": "April 5, 2025"
         },
         {
           "id": 6,
-          "player1": { "id": 5, "name": "Kavya"},
-          "player2": { "id": 8, "name": "Winner B-4"},
+          "player1": { "id": 3, "name": "Kavya"},
+          "player2": { "id": 5, "name": "Grayson"},
           "status": "scheduled",
           "winner":0,
           "time": "April 5, 2025"
