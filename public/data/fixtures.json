@@ -9,7 +9,7 @@
           "player1": { "id": 1, "name": "Gaurav"},
           "player2": { "id": 5, "name": "Lanna"},
           "status": "scheduled",
-          "winner":0,
+          "winner":1,
           "time": "April 5, 2025",
           "time1": "Rank 1",
           "time2": "Rank 8"
@@ -51,7 +51,7 @@
       "matches": [
         {
           "id": 5,
-          "player1": { "id": 1, "name": "Winner B-1", "university": "University of Alabama" },
+          "player1": { "id": 1, "name": "Gaurav", "university": "University of Alabama" },
           "player2": { "id": 4, "name": "Winner B-2", "university": "MIT" },
           "status": "scheduled",
           "winner": 0,
