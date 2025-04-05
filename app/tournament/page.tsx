@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { ArrowLeft, ArrowUpDown, ArrowDown, ArrowUp, Trophy, Clock, RefreshCw } from "lucide-react"
+import { ArrowLeft, ArrowUpDown, ArrowDown, ArrowUp, Trophy, Clock, RefreshCw, Crown } from "lucide-react"
 import { initializeApp } from "firebase/app"
 import { getFirestore, collection, getDocs, query, orderBy } from "firebase/firestore"
 
@@ -334,56 +334,68 @@ export default function FixturesLeaderboard() {
               </div>
             )}
 
-            <div className="tournament-bracket relative">
-              {tournament.rounds.map((round, roundIndex) => (
-                <div key={roundIndex} className={`round round-${roundIndex}`}>
-                  <h3 className="text-xl font-semibold mb-4 text-center">{round.name}</h3>
-                  <div className="matches-container">
-                    {round.matches.map((match, matchIndex) => (
-                      <div
-                        key={matchIndex}
-                        className={`match-card relative ${
-                          match.status === "completed"
-                            ? "border-green-500 bg-green-50"
-                            : match.status === "in-progress"
-                              ? "border-[#9E1B32] bg-red-50 animate-pulse"
-                              : match.status === "scheduled"
-                                ? "border-blue-500 bg-blue-50"
-                                : "border-gray-300 bg-gray-50"
-                        }`}
-                      >
-                        {match.player1 && match.player2 ? (
-                          <>
-                            <div className="flex justify-between items-center mb-2">
-                              <div
-                                className={`font-medium ${match.winner === match.player1.id ? "font-bold text-green-700" : ""}`}
-                              >
-                                {match.player1.name}
-                              </div>
-                              <div className="text-sm">{match.time1 || ""}</div>
-                            </div>
-                            <div className="flex justify-between items-center">
-                              <div
-                                className={`font-medium ${match.winner === match.player2.id ? "font-bold text-green-700" : ""}`}
-                              >
-                                {match.player2.name}
-                              </div>
-                              <div className="text-sm">{match.time2 || ""}</div>
-                            </div>
-                            {match.status === "scheduled" && (
-                              <div className="mt-2 text-xs text-blue-600">{match.time}</div>
-                            )}
-                          </>
-                        ) : match.player1 ? (
-                          <div className="font-medium">{match.player1.name} (Waiting for opponent)</div>
-                        ) : (
-                          <div className="text-gray-500 italic">To be determined</div>
-                        )}
-                      </div>
-                    ))}
+<div className="tournament-bracket relative">
+  {tournament.rounds.map((round, roundIndex) => (
+    <div key={roundIndex} className={`round round-${roundIndex}`}>
+      <h3 className="text-xl font-semibold mb-4 text-center">{round.name}</h3>
+      <div className="matches-container">
+        {round.matches.map((match, matchIndex) => (
+          <div
+            key={matchIndex}
+            className={`match-card relative ${
+              match.status === "completed"
+                ? "border-green-500 bg-green-50"
+                : match.status === "in-progress"
+                ? "border-[#9E1B32] bg-red-50 animate-pulse"
+                : match.status === "scheduled"
+                ? "border-blue-500 bg-blue-50"
+                : "border-gray-300 bg-gray-50"
+            }`}
+          >
+            {match.player1 && match.player2 ? (
+              <>
+                <div className="flex justify-between items-center mb-2">
+                  <div
+                    className={`font-medium ${
+                      match.winner === match.player1.id ? "font-bold text-green-700" : ""
+                    }`}
+                  >
+                    {match.player1.name}
+                    {/* Add crown for Finals winner */}
+                    {round.name === "Final" && match.winner === match.player1.id && (
+                      <Crown className="inline-block ml-2 text-yellow-500 w-5 h-5" />
+                    )}
                   </div>
+                  <div className="text-sm">{match.time1 || ""}</div>
                 </div>
-              ))}
+                <div className="flex justify-between items-center">
+                  <div
+                    className={`font-medium ${
+                      match.winner === match.player2.id ? "font-bold text-green-700" : ""
+                    }`}
+                  >
+                    {match.player2.name}
+                    {/* Add crown for Finals winner */}
+                    {round.name === "Final" && match.winner === match.player2.id && (
+                      <Crown className="inline-block ml-2 text-yellow-500 w-5 h-5" />
+                    )}
+                  </div>
+                  <div className="text-sm">{match.time2 || ""}</div>
+                </div>
+                {match.status === "scheduled" && (
+                  <div className="mt-2 text-xs text-blue-600">{match.time}</div>
+                )}
+              </>
+            ) : match.player1 ? (
+              <div className="font-medium">{match.player1.name} (Waiting for opponent)</div>
+            ) : (
+              <div className="text-gray-500 italic">To be determined</div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
 
               {/* Bracket connectors */}
               <div className="bracket-lines">
