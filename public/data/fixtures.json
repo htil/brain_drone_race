@@ -62,7 +62,7 @@
           "player1": { "id": 3, "name": "Kavya"},
           "player2": { "id": 5, "name": "Grayson"},
           "status": "scheduled",
-          "winner":0,
+          "winner":3,
           "time": "April 5, 2025"
         }
       ]
@@ -73,7 +73,7 @@
         {
           "id": 7,
           "player1": { "id": 2, "name": "Ian"},
-          "player2": null,
+          "player2": { "id": 3, "name": "Kavya"},
           "status": "pending"
         }
       ]
