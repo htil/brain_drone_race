@@ -9,14 +9,14 @@
     {
       "name": "Wesley Junkins",
       "imgSrc": "./imgs/wesley.png",
-      "classification": "Graduate Student('26)",
+      "classification": "Graduate Student ('26)",
       "yearbookQuote": "It is what it is, but it can be what it could be.",
       "linkedinUrl": "https://www.linkedin.com/in/wesleyjunkins/"
     },
     {
       "name": "Pranay Joshi",
       "imgSrc": "./imgs/pranay.png",
-      "classification": "Sophomore('27)",
+      "classification": "Undergraduate Student ('27)",
       "yearbookQuote": "Future can't be Predicted.",
       "linkedinUrl": "https://www.linkedin.com/in/pranay-joshi-/"
     },
@@ -34,6 +34,20 @@
       "classification": "Undergraduate Student (‘26)",
       "yearbookQuote": "Make the hard choices now for an easier future",
       "linkedinUrl": "https://www.linkedin.com/in/jayden-brooks/"
+    },
+    {
+      "name": "Michael Adeleke",
+      "imgSrc": "./imgs/michael.webp",
+      "classification": "PHD Student",
+      "yearbookQuote": "Silent with the grind, loud when it’s finished.",
+      "linkedinUrl": "https://www.linkedin.com/in/michael-adeleke-4a1228217/"
+    },
+    {
+      "name": "Eliel Smith",
+      "imgSrc": "./imgs/eliel.webp",
+      "classification": "Undergraduate Student (‘26)",
+      "yearbookQuote": "Every master is a student for life.",
+      "linkedinUrl": "https://www.linkedin.com/in/eliel-smith-a9411b257/"
     }
   ]
   
