@@ -66,7 +66,7 @@ export default function Schedule() {
           </header>
     
           <div className="pt-16 h-[1000px]">
-                <CalendlyEmbed url="https://calendly.com/brain_drone_race/brain-drone-race-qualifier-2nd-week-clone"/>
+                <CalendlyEmbed url="https://calendly.com/madeleke-crimson/bdr"/>
             </div>
         </div>
     )
