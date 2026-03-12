@@ -424,7 +424,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-8 text-center">
-            <p>&copy; 2025 UA Brain Drone Race Team. All rights reserved.</p>
+            <p>&copy; 2026 UA Brain Drone Race Team. All rights reserved.</p>
           </div>
         </div>
       </footer>

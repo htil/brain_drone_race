@@ -2,28 +2,12 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { ArrowLeft, ArrowUpDown, ArrowDown, ArrowUp, Trophy, Clock, RefreshCw, Crown } from "lucide-react"
-import { initializeApp } from "firebase/app"
-import { getFirestore, collection, getDocs, query, orderBy } from "firebase/firestore"
-
-// Firebase configuration
-const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
-};
-// Initialize Firebase
-const app = initializeApp(firebaseConfig)
-const db = getFirestore(app)
+import { ArrowLeft, Clock, RefreshCw, Crown } from "lucide-react"
 
 interface Player {
   id: number
   name: string
-  university: string
+  university?: string
 }
 
 interface Match {
@@ -45,23 +29,19 @@ interface Round {
 interface Tournament {
   tournamentName: string
   rounds: Round[]
+  archive?: ArchivedTournament[]
 }
 
-interface LeaderboardEntry {
-  id: number
-  name: string
-  wins: number
-  totalRaces: number
-  rank: number // Added rank field
+interface ArchivedTournament {
+  year: number
+  tournamentName: string
+  rounds: Round[]
 }
 
 export default function FixturesLeaderboard() {
   const [tournament, setTournament] = useState<Tournament | null>(null)
-  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([])
-  const [sortField, setSortField] = useState<string>("rank") // Changed default sort to rank
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc") // Changed default to ascending for rank
   const [loading, setLoading] = useState<boolean>(true)
-  const [activeTab, setActiveTab] = useState<"fixtures" | "leaderboard">("fixtures")
+  const [activeTab, setActiveTab] = useState<"fixtures" | "archive">("fixtures")
   const [simulatingRace, setSimulatingRace] = useState<boolean>(false)
   const [currentRace, setCurrentRace] = useState<Match | null>(null)
 
@@ -72,39 +52,6 @@ export default function FixturesLeaderboard() {
         const fixturesResponse = await fetch("/data/fixtures.json")
         const fixturesData = await fixturesResponse.json()
         setTournament(fixturesData)
-
-        // Fetch leaderboard data from Firebase
-        try {
-          const leaderboardQuery = query(collection(db, "race"), orderBy("rank", "asc"))
-          const leaderboardSnapshot = await getDocs(leaderboardQuery)
-          const leaderboardData: LeaderboardEntry[] = []
-          // console.log(leaderboardSnapshot.docs)
-          leaderboardSnapshot.forEach((doc) => {
-            const data = doc.data()
-            leaderboardData.push({
-              id: data.id || Number.parseInt(doc.id),
-              name: data.name || "Unknown Racer",
-              wins: data.wins || 0,
-              totalRaces: data.totalRaces || 0,
-              rank: data.rank || 999, // Default high rank if not provided
-            })
-          })
-
-          setLeaderboard(leaderboardData)
-        } catch (firebaseError) {
-          console.error("Error fetching from Firebase:", firebaseError)
-          // Fallback to sample data if Firebase fails
-          setLeaderboard([
-            { id: 1, name: "Jane Doe", wins: 2, totalRaces: 2, rank: 1 },
-            { id: 5, name: "Emily Johnson", wins: 1, totalRaces: 1, rank: 2 },
-            { id: 4, name: "Sarah Williams", wins: 1, totalRaces: 2, rank: 3 },
-            { id: 8, name: "Lisa Chen", wins: 1, totalRaces: 1, rank: 4 },
-            { id: 2, name: "Alex Johnson", wins: 0, totalRaces: 1, rank: 5 },
-            { id: 3, name: "Michael Brown", wins: 0, totalRaces: 1, rank: 6 },
-            { id: 6, name: "David Lee", wins: 0, totalRaces: 1, rank: 7 },
-            { id: 7, name: "John Smith", wins: 0, totalRaces: 1, rank: 8 },
-          ])
-        }
       } catch (error) {
         console.error("Error fetching data:", error)
       } finally {
@@ -114,34 +61,6 @@ export default function FixturesLeaderboard() {
 
     fetchData()
   }, [])
-
-  const handleSort = (field: string) => {
-    if (sortField === field) {
-      setSortDirection(sortDirection === "asc" ? "desc" : "asc")
-    } else {
-      setSortField(field)
-      // Set default sort direction based on field
-      if (field === "rank") {
-        setSortDirection("asc") // Rank should default to ascending (1, 2, 3...)
-      } else {
-        setSortDirection("desc") // Other fields default to descending
-      }
-    }
-  }
-
-  const sortedLeaderboard = [...leaderboard].sort((a, b) => {
-    const valueA = a[sortField as keyof LeaderboardEntry]
-    const valueB = b[sortField as keyof LeaderboardEntry]
-
-    if (typeof valueA === "number" && typeof valueB === "number") {
-      return sortDirection === "asc" ? valueA - valueB : valueB - valueA
-    }
-
-    // Fallback for string comparison
-    return sortDirection === "asc"
-      ? String(valueA).localeCompare(String(valueB))
-      : String(valueB).localeCompare(String(valueA))
-  })
 
   const simulateRace = () => {
     if (!tournament) return
@@ -214,37 +133,10 @@ export default function FixturesLeaderboard() {
           }
         }
       }
-
-      // Update leaderboard
-      const updatedLeaderboard = [...leaderboard]
-
-      // Update winner stats
-      const winnerIndex = updatedLeaderboard.findIndex((entry) => entry.id === winner)
-      if (winnerIndex !== -1) {
-        updatedLeaderboard[winnerIndex].wins += 1
-        updatedLeaderboard[winnerIndex].totalRaces += 1
-        
-        // Note: We're not updating the rank here as we're using the provided ranks
-      }
-
-      // Update loser stats
-      const loserId = winner === scheduledMatch!.player1!.id ? scheduledMatch!.player2!.id : scheduledMatch!.player1!.id
-      const loserIndex = updatedLeaderboard.findIndex((entry) => entry.id === loserId)
-      if (loserIndex !== -1) {
-        updatedLeaderboard[loserIndex].totalRaces += 1
-      }
-
-      // Update state
       setTournament(updatedTournament)
-      setLeaderboard(updatedLeaderboard)
       setSimulatingRace(false)
       setCurrentRace(null)
     }, 5000)
-  }
-
-  const getSortIcon = (field: string) => {
-    if (sortField !== field) return <ArrowUpDown className="ml-1 h-4 w-4" />
-    return sortDirection === "asc" ? <ArrowUp className="ml-1 h-4 w-4" /> : <ArrowDown className="ml-1 h-4 w-4" />
   }
 
   if (loading) {
@@ -267,7 +159,7 @@ export default function FixturesLeaderboard() {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-8 text-center">Fixtures & Leaderboard</h1>
+        <h1 className="text-4xl font-bold mb-8 text-center">Tournament Fixtures</h1>
 
         <div className="flex justify-center mb-8">
           <div className="inline-flex rounded-md shadow-sm" role="group">
@@ -280,18 +172,18 @@ export default function FixturesLeaderboard() {
               }`}
               onClick={() => setActiveTab("fixtures")}
             >
-              Tournament Fixtures
+              2026 Fixtures
             </button>
             <button
               type="button"
               className={`px-4 py-2 text-sm font-medium rounded-r-lg ${
-                activeTab === "leaderboard"
+                activeTab === "archive"
                   ? "bg-[#9E1B32] text-white"
                   : "bg-white text-gray-900 border border-gray-200 hover:bg-gray-100"
               }`}
-              onClick={() => setActiveTab("leaderboard")}
+              onClick={() => setActiveTab("archive")}
             >
-              Leaderboard
+              2025 Archive
             </button>
           </div>
         </div>
@@ -334,133 +226,154 @@ export default function FixturesLeaderboard() {
               </div>
             )}
 
-<div className="tournament-bracket relative">
-  {tournament.rounds.map((round, roundIndex) => (
-    <div key={roundIndex} className={`round round-${roundIndex}`}>
-      <h3 className="text-xl font-semibold mb-4 text-center">{round.name}</h3>
-      <div className="matches-container">
-        {round.matches.map((match, matchIndex) => (
-          <div
-            key={matchIndex}
-            className={`match-card relative ${
-              match.status === "completed"
-                ? "border-green-500 bg-green-50"
-                : match.status === "in-progress"
-                ? "border-[#9E1B32] bg-red-50 animate-pulse"
-                : match.status === "scheduled"
-                ? "border-blue-500 bg-blue-50"
-                : "border-gray-300 bg-gray-50"
-            }`}
-          >
-            {match.player1 && match.player2 ? (
-              <>
-                <div className="flex justify-between items-center mb-2">
-                  <div
-                    className={`font-medium ${
-                      match.winner === match.player1.id ? "font-bold text-green-700" : ""
-                    }`}
-                  >
-                    {match.player1.name}
-                    {/* Add crown for Finals winner */}
-                    {round.name === "Final" && match.winner === match.player1.id && (
-                      <Crown className="inline-block ml-2 text-yellow-500 w-5 h-5" />
-                    )}
+            <div className="tournament-bracket relative">
+              {tournament.rounds.map((round, roundIndex) => (
+                <div key={roundIndex} className={`round round-${roundIndex}`}>
+                  <h3 className="text-xl font-semibold mb-4 text-center">{round.name}</h3>
+                  <div className="matches-container">
+                    {round.matches.map((match, matchIndex) => (
+                      <div
+                        key={matchIndex}
+                        className={`match-card relative ${
+                          match.status === "completed"
+                            ? "border-green-500 bg-green-50"
+                            : match.status === "in-progress"
+                            ? "border-[#9E1B32] bg-red-50 animate-pulse"
+                            : match.status === "scheduled"
+                            ? "border-blue-500 bg-blue-50"
+                            : "border-gray-300 bg-gray-50"
+                        }`}
+                      >
+                        {match.player1 && match.player2 ? (
+                          <>
+                            <div className="flex justify-between items-center mb-2">
+                              <div
+                                className={`font-medium ${
+                                  match.winner === match.player1.id ? "font-bold text-green-700" : ""
+                                }`}
+                              >
+                                {match.player1.name}
+                                {round.name === "Final" && match.winner === match.player1.id && (
+                                  <Crown className="inline-block ml-2 text-yellow-500 w-5 h-5" />
+                                )}
+                              </div>
+                              <div className="text-sm">{match.time1 || ""}</div>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <div
+                                className={`font-medium ${
+                                  match.winner === match.player2.id ? "font-bold text-green-700" : ""
+                                }`}
+                              >
+                                {match.player2.name}
+                                {round.name === "Final" && match.winner === match.player2.id && (
+                                  <Crown className="inline-block ml-2 text-yellow-500 w-5 h-5" />
+                                )}
+                              </div>
+                              <div className="text-sm">{match.time2 || ""}</div>
+                            </div>
+                            {match.status === "scheduled" && (
+                              <div className="mt-2 text-xs text-blue-600">{match.time}</div>
+                            )}
+                          </>
+                        ) : match.player1 ? (
+                          <div className="font-medium">{match.player1.name} (Waiting for opponent)</div>
+                        ) : (
+                          <div className="text-gray-500 italic">To be determined</div>
+                        )}
+                      </div>
+                    ))}
                   </div>
-                  <div className="text-sm">{match.time1 || ""}</div>
                 </div>
-                <div className="flex justify-between items-center">
-                  <div
-                    className={`font-medium ${
-                      match.winner === match.player2.id ? "font-bold text-green-700" : ""
-                    }`}
-                  >
-                    {match.player2.name}
-                    {/* Add crown for Finals winner */}
-                    {round.name === "Final" && match.winner === match.player2.id && (
-                      <Crown className="inline-block ml-2 text-yellow-500 w-5 h-5" />
-                    )}
-                  </div>
-                  <div className="text-sm">{match.time2 || ""}</div>
-                </div>
-                {match.status === "scheduled" && (
-                  <div className="mt-2 text-xs text-blue-600">{match.time}</div>
-                )}
-              </>
-            ) : match.player1 ? (
-              <div className="font-medium">{match.player1.name} (Waiting for opponent)</div>
-            ) : (
-              <div className="text-gray-500 italic">To be determined</div>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
-  ))}
+              ))}
 
               {/* Bracket connectors */}
               <div className="bracket-lines">
-  {/* Quarter Finals to Semi Finals */}
-  <div className="connector qf-sf-1"></div>
-  <div className="connector qf-sf-2"></div>
-  <div className="connector qf-sf-3"></div>
-  <div className="connector qf-sf-4"></div>
-  <div className="connector qf-sf-5"></div>
-  <div className="connector qf-sf-6"></div>
-  <div className="connector qf-sf-7"></div>
-  <div className="connector qf-sf-8"></div>
-  
-  {/* Semi Finals to Finals */}
-  <div className="connector sf-f-1"></div>
-  <div className="connector sf-f-2"></div>
-  <div className="connector sf-f-3"></div>
-  <div className="connector sf-f-4"></div>
-</div>
+                {/* Quarter Finals to Semi Finals */}
+                <div className="connector qf-sf-1"></div>
+                <div className="connector qf-sf-2"></div>
+                <div className="connector qf-sf-3"></div>
+                <div className="connector qf-sf-4"></div>
+                <div className="connector qf-sf-5"></div>
+                <div className="connector qf-sf-6"></div>
+                <div className="connector qf-sf-7"></div>
+                <div className="connector qf-sf-8"></div>
+
+                {/* Semi Finals to Finals */}
+                <div className="connector sf-f-1"></div>
+                <div className="connector sf-f-2"></div>
+                <div className="connector sf-f-3"></div>
+                <div className="connector sf-f-4"></div>
+              </div>
             </div>
           </div>
         )}
 
-        {activeTab === "leaderboard" && (
-          <div className="overflow-x-auto">
-            <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="py-3 px-4 text-left cursor-pointer" onClick={() => handleSort("rank")}>
-                    <div className="flex items-center">Rank {getSortIcon("rank")}</div>
-                  </th>
-                  <th className="py-3 px-4 text-left cursor-pointer" onClick={() => handleSort("name")}>
-                    <div className="flex items-center">Name {getSortIcon("name")}</div>
-                  </th>
-                  <th className="py-3 px-4 text-left cursor-pointer" onClick={() => handleSort("wins")}>
-                    <div className="flex items-center">Wins {getSortIcon("wins")}</div>
-                  </th>
-                  <th className="py-3 px-4 text-left cursor-pointer" onClick={() => handleSort("totalRaces")}>
-                    <div className="flex items-center">Races {getSortIcon("totalRaces")}</div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {sortedLeaderboard.map((entry) => (
-                  <tr key={entry.id} className={entry.rank % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                    <td className="py-3 px-4 border-t border-gray-200">{entry.rank}</td>
-                    <td className="py-3 px-4 border-t border-gray-200 font-medium">{entry.name}</td>
-                    <td className="py-3 px-4 border-t border-gray-200">
-                      <div className="flex items-center">
-                        <Trophy className="w-4 h-4 mr-1 text-yellow-500" />
-                        {entry.wins}
+        {activeTab === "archive" && tournament?.archive && (
+          <div className="space-y-8">
+            {tournament.archive.map((archived, index) => (
+              <div key={index} className="border rounded-lg p-6 bg-gray-50">
+                <h2 className="text-2xl font-bold mb-4">
+                  {archived.tournamentName} ({archived.year})
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {archived.rounds.map((round, rIndex) => (
+                    <div key={rIndex}>
+                      <h3 className="text-lg font-semibold mb-2">{round.name}</h3>
+                      <div className="space-y-3">
+                        {round.matches.map((match) => (
+                          <div
+                            key={match.id}
+                            className="border border-gray-200 rounded-md p-3 bg-white"
+                          >
+                            <div className="flex justify-between text-sm font-medium mb-1">
+                              <span
+                                className={
+                                  match.winner === match.player1?.id
+                                    ? "font-bold text-green-700"
+                                    : ""
+                                }
+                              >
+                                {match.player1?.name}
+                              </span>
+                              <span className="text-xs text-gray-500">
+                                {match.time1 || ""}
+                              </span>
+                            </div>
+                            <div className="flex justify-between text-sm font-medium">
+                              <span
+                                className={
+                                  match.winner === match.player2?.id
+                                    ? "font-bold text-green-700"
+                                    : ""
+                                }
+                              >
+                                {match.player2?.name}
+                              </span>
+                              <span className="text-xs text-gray-500">
+                                {match.time2 || ""}
+                              </span>
+                            </div>
+                            {match.time && (
+                              <div className="mt-1 text-xs text-gray-600">
+                                {match.time}
+                              </div>
+                            )}
+                          </div>
+                        ))}
                       </div>
-                    </td>
-                    <td className="py-3 px-4 border-t border-gray-200">{entry.totalRaces}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </main>
 
       <footer className="bg-[#9E1B32] text-white py-8 mt-12">
         <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2025 UA Brain Drone Race Team. All rights reserved.</p>
+          <p>&copy; 2026 UA Brain Drone Race Team. All rights reserved.</p>
         </div>
       </footer>
 

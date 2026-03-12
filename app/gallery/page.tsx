@@ -85,7 +85,7 @@ export default function Gallery() {
 
       <footer className="bg-[#9E1B32] text-white py-8 mt-12">
         <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2025 UA Brain Drone Race Team. All rights reserved.</p>
+          <p>&copy; 2026 UA Brain Drone Race Team. All rights reserved.</p>
         </div>
       </footer>
     </div>

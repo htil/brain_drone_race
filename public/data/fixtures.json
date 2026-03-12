@@ -1,82 +1,169 @@
 {
-  "tournamentName": "Spring 2025 Brain Drone Racing Championship",
+  "tournamentName": "Spring 2026 Brain Drone Racing Championship (TBD)",
   "rounds": [
     {
-      "name": "Quarter Finals",
+      "name": "Quarter Finals (TBD)",
       "matches": [
         {
           "id": 1,
-          "player1": { "id": 1, "name": "Gaurav"},
-          "player2": { "id": 5, "name": "Lanna"},
+          "player1": { "id": 1, "name": "TBD" },
+          "player2": { "id": 5, "name": "TBD" },
           "status": "scheduled",
-          "winner":1,
-          "time": "April 5, 2025",
-          "time1": "Rank 1",
-          "time2": "Rank 8"
+          "winner": null,
+          "time": "TBD",
+          "time1": "TBD",
+          "time2": "TBD"
         },
         {
           "id": 2,
-          "player1": { "id": 2, "name": "Ian"},
-          "player2": { "id": 7, "name": "Atta"},
+          "player1": { "id": 2, "name": "TBD" },
+          "player2": { "id": 7, "name": "TBD" },
           "status": "scheduled",
-          "winner":2,
-          "time": "April 5, 2025",
-          "time1": "Rank 2",
-          "time2": "Rank 7"
+          "winner": null,
+          "time": "TBD",
+          "time1": "TBD",
+          "time2": "TBD"
         },
         {
           "id": 3,
-          "player1": { "id": 3, "name": "Kavya"},
-          "player2": { "id": 6, "name": "Tiara"},
+          "player1": { "id": 3, "name": "TBD" },
+          "player2": { "id": 6, "name": "TBD" },
           "status": "scheduled",
-          "winner":3,
-          "time": "April 5, 2025",
-          "time1": "Rank 3",
-          "time2": "Rank 6"
+          "winner": null,
+          "time": "TBD",
+          "time1": "TBD",
+          "time2": "TBD"
         },
         {
           "id": 4,
-          "player1": { "id": 4, "name": "Austin"},
-          "player2": { "id": 5, "name": "Grayson"},
+          "player1": { "id": 4, "name": "TBD" },
+          "player2": { "id": 5, "name": "TBD" },
           "status": "scheduled",
-          "winner":5,
-          "time": "April 5, 2025",
-          "time1": "Rank 4",
-          "time2": "Rank 5"
+          "winner": null,
+          "time": "TBD",
+          "time1": "TBD",
+          "time2": "TBD"
         }
       ]
     },
     {
-      "name": "Semi Finals",
+      "name": "Semi Finals (TBD)",
       "matches": [
         {
           "id": 5,
-          "player1": { "id": 1, "name": "Gaurav", "university": "University of Alabama" },
-          "player2": { "id": 2, "name": "Ian", "university": "MIT" },
+          "player1": { "id": 1, "name": "TBD" },
+          "player2": { "id": 2, "name": "TBD" },
           "status": "scheduled",
-          "winner": 2,
-          "time": "April 5, 2025"
+          "winner": null,
+          "time": "TBD"
         },
         {
           "id": 6,
-          "player1": { "id": 3, "name": "Kavya"},
-          "player2": { "id": 5, "name": "Grayson"},
+          "player1": { "id": 3, "name": "TBD" },
+          "player2": { "id": 5, "name": "TBD" },
           "status": "scheduled",
-          "winner":3,
-          "time": "April 5, 2025"
+          "winner": null,
+          "time": "TBD"
         }
       ]
     },
     {
-      "name": "Final",
+      "name": "Final (TBD)",
       "matches": [
         {
           "id": 7,
-          "player1": { "id": 2, "name": "Ian"},
-          "player2": { "id": 3, "name": "Kavya"},
+          "player1": { "id": 2, "name": "TBD" },
+          "player2": { "id": 3, "name": "TBD" },
           "status": "scheduled",
-          "winner": 3,
-          "time": "April 5, 2025"
+          "winner": null,
+          "time": "TBD"
+        }
+      ]
+    }
+  ],
+  "archive": [
+    {
+      "year": 2025,
+      "tournamentName": "Spring 2025 Brain Drone Racing Championship",
+      "rounds": [
+        {
+          "name": "Quarter Finals",
+          "matches": [
+            {
+              "id": 1,
+              "player1": { "id": 1, "name": "Gaurav"},
+              "player2": { "id": 5, "name": "Lanna"},
+              "status": "scheduled",
+              "winner": 1,
+              "time": "April 5, 2025",
+              "time1": "Rank 1",
+              "time2": "Rank 8"
+            },
+            {
+              "id": 2,
+              "player1": { "id": 2, "name": "Ian"},
+              "player2": { "id": 7, "name": "Atta"},
+              "status": "scheduled",
+              "winner": 2,
+              "time": "April 5, 2025",
+              "time1": "Rank 2",
+              "time2": "Rank 7"
+            },
+            {
+              "id": 3,
+              "player1": { "id": 3, "name": "Kavya"},
+              "player2": { "id": 6, "name": "Tiara"},
+              "status": "scheduled",
+              "winner": 3,
+              "time": "April 5, 2025",
+              "time1": "Rank 3",
+              "time2": "Rank 6"
+            },
+            {
+              "id": 4,
+              "player1": { "id": 4, "name": "Austin"},
+              "player2": { "id": 5, "name": "Grayson"},
+              "status": "scheduled",
+              "winner": 5,
+              "time": "April 5, 2025",
+              "time1": "Rank 4",
+              "time2": "Rank 5"
+            }
+          ]
+        },
+        {
+          "name": "Semi Finals",
+          "matches": [
+            {
+              "id": 5,
+              "player1": { "id": 1, "name": "Gaurav", "university": "University of Alabama" },
+              "player2": { "id": 2, "name": "Ian", "university": "MIT" },
+              "status": "scheduled",
+              "winner": 2,
+              "time": "April 5, 2025"
+            },
+            {
+              "id": 6,
+              "player1": { "id": 3, "name": "Kavya"},
+              "player2": { "id": 5, "name": "Grayson"},
+              "status": "scheduled",
+              "winner": 3,
+              "time": "April 5, 2025"
+            }
+          ]
+        },
+        {
+          "name": "Final",
+          "matches": [
+            {
+              "id": 7,
+              "player1": { "id": 2, "name": "Ian"},
+              "player2": { "id": 3, "name": "Kavya"},
+              "status": "scheduled",
+              "winner": 3,
+              "time": "April 5, 2025"
+            }
+          ]
         }
       ]
     }
