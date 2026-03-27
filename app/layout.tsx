@@ -6,8 +6,14 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
   title: "UA Brain Drone Race Team",
-  description: "Join the University of Alabama Brain Drone Race Team and control drones with your mind!",
-    generator: 'v0.dev'
+  description:
+    "Join the University of Alabama Brain Drone Race Team and control drones with your mind!",
+  generator: "v0.dev",
+  icons: {
+    icon: "/imgs/logo.png",
+    shortcut: "/imgs/logo.png",
+    apple: "/imgs/logo.png",
+  },
 }
 
 export default function RootLayout({
@@ -21,7 +27,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-
-
-import './globals.css'
