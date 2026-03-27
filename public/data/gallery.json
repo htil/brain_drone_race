@@ -1,22 +1,80 @@
 [
-    {
-      "type": "video",
-      "src": "https://player.vimeo.com/video/829827549",
-      "title": "Team Practice Session",
-      "description": "Our team practicing with the latest BCI technology"
-    },
-    {
-      "type": "video",
-      "src": "https://www.youtube.com/embed/-1TdAWCGu2c",
-      "title": "Brain-Drone Racing Demo",
-      "description": "Watch our team demonstrate brain-controlled drone racing"
-    },
-    {
-      "type": "video",
-      "src": "https://chrissmithcrawford.com/media/cbs.mp4",
-      "title": "National News Coverage",
-      "description": "Our team featured on national television for our innovative work."
-    }
-  ]
-  
-  
+  {
+    "type": "video",
+    "src": "https://player.vimeo.com/video/829827549",
+    "title": "Team Practice Session",
+    "description": "Our team practicing with the latest BCI technology"
+  },
+  {
+    "type": "video",
+    "src": "https://www.youtube.com/embed/-1TdAWCGu2c",
+    "title": "Brain-Drone Racing Demo",
+    "description": "Watch our team demonstrate brain-controlled drone racing"
+  },
+  {
+    "type": "video",
+    "src": "https://chrissmithcrawford.com/media/cbs.mp4",
+    "title": "National News Coverage",
+    "description": "Our team featured on national television for our innovative work."
+  },
+  {
+    "type": "image",
+    "src": "/Gallery/DSC_0005.jpg",
+    "title": "Event photo",
+    "description": "UA Brain Drone Race"
+  },
+  {
+    "type": "image",
+    "src": "/Gallery/IMG_3371.jpg",
+    "title": "Event photo",
+    "description": "UA Brain Drone Race"
+  },
+  {
+    "type": "image",
+    "src": "/Gallery/IMG_3384.jpg",
+    "title": "Event photo",
+    "description": "UA Brain Drone Race"
+  },
+  {
+    "type": "image",
+    "src": "/Gallery/IMG_3388.jpg",
+    "title": "Event photo",
+    "description": "UA Brain Drone Race"
+  },
+  {
+    "type": "image",
+    "src": "/Gallery/IMG_3398.jpg",
+    "title": "Event photo",
+    "description": "UA Brain Drone Race"
+  },
+  {
+    "type": "image",
+    "src": "/Gallery/IMG_3403.jpg",
+    "title": "Event photo",
+    "description": "UA Brain Drone Race"
+  },
+  {
+    "type": "image",
+    "src": "/Gallery/IMG_3405.jpg",
+    "title": "Event photo",
+    "description": "UA Brain Drone Race"
+  },
+  {
+    "type": "image",
+    "src": "/Gallery/IMG_3408.jpg",
+    "title": "Event photo",
+    "description": "UA Brain Drone Race"
+  },
+  {
+    "type": "image",
+    "src": "/Gallery/IMG_3416.jpg",
+    "title": "Event photo",
+    "description": "UA Brain Drone Race"
+  },
+  {
+    "type": "image",
+    "src": "/Gallery/IMG_3460.jpg",
+    "title": "Event photo",
+    "description": "UA Brain Drone Race"
+  }
+]

@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run sync-gallery && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync-gallery": "node scripts/sync-gallery.mjs"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
@@ -44,6 +45,7 @@
     "clsx": "^2.1.1",
     "cmdk": "1.0.4",
     "dotenv": "^16.4.7",
+    "embla-carousel-autoplay": "^8.5.2",
     "embla-carousel-react": "latest",
     "firebase": "^11.5.0",
     "framer-motion": "latest",

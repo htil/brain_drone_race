@@ -1,94 +1,81 @@
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { motion } from "framer-motion";
+import { GalleryMediaCarousel } from "@/components/gallery-photo-carousel";
+import { SectionHeading, SectionShell } from "@/components/section-flair";
+
+interface GalleryItem {
+  type: string;
+  src?: string;
+  title: string;
+  description: string;
+}
 
 export default function Gallery() {
-  // Sample gallery items - replace with your actual content
-  const galleryItems = [
-    {
-      type: "image",
-      src: "/placeholder.svg",
-      title: "Team Practice Session",
-      description: "Our team practicing with the latest BCI technology",
-    },
-    {
-      type: "video",
-      videoId: "-1TdAWCGu2c",
-      title: "Brain-Drone Racing Demo",
-      description: "Watch our team demonstrate brain-controlled drone racing",
-    },
-    {
-      type: "image",
-      src: "/placeholder.svg",
-      title: "National Competition",
-      description: "Competing at the National Championships",
-    },
-    {
-      type: "image",
-      src: "/placeholder.svg",
-      title: "Lab Setup",
-      description: "Our state-of-the-art brain-drone racing facility",
-    },
-    {
-      type: "image",
-      src: "/placeholder.svg",
-      title: "Team Photo",
-      description: "The UA Brain Drone Racing Team",
-    },
-    {
-      type: "image",
-      src: "/placeholder.svg",
-      title: "Training Session",
-      description: "New members learning to control drones with BCI",
-    },
-  ]
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
+
+  const galleryMedia = useMemo(
+    () => galleryItems.filter((item) => item.type === "video" || item.type === "image"),
+    [galleryItems],
+  );
+
+  useEffect(() => {
+    const load = async () => {
+      const res = await fetch("/data/gallery.json");
+      const data = await res.json();
+      setGalleryItems(data);
+    };
+    load();
+  }, []);
 
   return (
-    <div className="min-h-screen bg-white">
-      <header className="bg-[#9E1B32] text-white py-4">
-        <div className="container mx-auto px-4">
-          <Link href="/" className="inline-flex items-center text-white hover:text-gray-200">
-            <ArrowLeft className="w-5 h-5 mr-2" />
+    <div className="min-h-screen bg-slate-50">
+      <header className="sticky top-0 z-30 border-b border-gray-200/80 bg-white/90 shadow-sm backdrop-blur-md">
+        <div className="container mx-auto flex items-center justify-between gap-3 px-4 py-3">
+          <Link href="/" className="relative h-10 w-44 sm:h-12 sm:w-56">
+            <Image src="/imgs/header.png" alt="University of Alabama" fill className="object-contain object-left" />
+          </Link>
+          <Link
+            href="/"
+            className="inline-flex items-center text-sm font-semibold text-[#9E1B32] transition hover:text-[#7A1526] sm:text-base"
+          >
+            <ArrowLeft className="mr-2 h-5 w-5" />
             Back to Home
           </Link>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold mb-8 text-center">Gallery</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {galleryItems.map((item, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
-              {item.type === "video" ? (
-                <div className="aspect-video">
-                  <iframe
-                    className="w-full h-full"
-                    src={`https://www.youtube.com/embed/${item.videoId}`}
-                    title={item.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-              ) : (
-                <div className="relative aspect-video">
-                  <Image src={item.src || "/placeholder.svg"} alt={item.title} fill className="object-cover" />
-                </div>
-              )}
-              <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </main>
+      <SectionShell variant="gradient">
+        <div className="container mx-auto px-4">
+          <SectionHeading
+            eyebrow="Media"
+            title="Gallery"
+          />
 
-      <footer className="bg-[#9E1B32] text-white py-8 mt-12">
-        <div className="container mx-auto px-4 text-center">
+          {galleryMedia.length > 0 && <GalleryMediaCarousel items={galleryMedia} />}
+
+          {galleryItems.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="rounded-2xl border border-dashed border-gray-300 bg-white p-8 text-center text-gray-600"
+            >
+              No gallery media yet. Run <code className="rounded bg-gray-100 px-1">npm run sync-gallery</code> after
+              adding images to <code className="rounded bg-gray-100 px-1">public/Gallery</code>.
+            </motion.div>
+          )}
+        </div>
+      </SectionShell>
+
+      <footer className="relative overflow-hidden border-t border-white/10 bg-gradient-to-br from-[#7A1526] via-[#9E1B32] to-[#4a0d18] py-10 text-white">
+        <div className="container relative z-10 mx-auto px-4 text-center text-sm text-white/75">
           <p>&copy; 2026 UA Brain Drone Race Team. All rights reserved.</p>
         </div>
       </footer>
     </div>
-  )
+  );
 }
-

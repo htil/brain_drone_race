@@ -2,7 +2,10 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
+import { motion } from "framer-motion"
 import { ArrowLeft, Clock, RefreshCw, Crown } from "lucide-react"
+import { SectionBlobs, SectionHeading } from "@/components/section-flair"
 
 interface Player {
   id: number
@@ -141,34 +144,50 @@ export default function FixturesLeaderboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#9E1B32]"></div>
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-slate-50 to-white">
+        <div className="h-12 w-12 animate-spin rounded-full border-2 border-[#9E1B32] border-t-transparent" />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      <header className="bg-[#9E1B32] text-white py-4">
-        <div className="container mx-auto px-4">
-          <Link href="/" className="inline-flex items-center text-white hover:text-gray-200">
-            <ArrowLeft className="w-5 h-5 mr-2" />
+    <div className="min-h-screen bg-slate-50">
+      <header className="sticky top-0 z-30 border-b border-gray-200/80 bg-white/90 shadow-sm backdrop-blur-md">
+        <div className="container mx-auto flex items-center justify-between gap-3 px-4 py-3">
+          <Link href="/" className="relative h-10 w-44 sm:h-12 sm:w-56">
+            <Image src="/imgs/header.png" alt="University of Alabama" fill className="object-contain object-left" />
+          </Link>
+          <Link
+            href="/"
+            className="inline-flex items-center text-sm font-semibold text-[#9E1B32] transition hover:text-[#7A1526] sm:text-base"
+          >
+            <ArrowLeft className="mr-2 h-5 w-5" />
             Back to Home
           </Link>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-8 text-center">Tournament Fixtures</h1>
+      <div className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-rose-50/30">
+        <SectionBlobs />
+        <main className="relative z-10 container mx-auto px-4 py-10 sm:py-12">
+        <SectionHeading
+          asTitle="h1"
+          eyebrow="Competition"
+          title="Tournament Fixtures"
+          subtitle="Current season bracket and archived results from past championships."
+        />
 
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex rounded-md shadow-sm" role="group">
+        <div className="mb-10 flex justify-center">
+          <div
+            className="inline-flex rounded-full border border-gray-200/80 bg-white/90 p-1 shadow-lg shadow-gray-300/40 backdrop-blur-sm"
+            role="group"
+          >
             <button
               type="button"
-              className={`px-4 py-2 text-sm font-medium rounded-l-lg ${
+              className={`rounded-full px-5 py-2.5 text-sm font-semibold transition ${
                 activeTab === "fixtures"
-                  ? "bg-[#9E1B32] text-white"
-                  : "bg-white text-gray-900 border border-gray-200 hover:bg-gray-100"
+                  ? "bg-[#9E1B32] text-white shadow-md"
+                  : "text-gray-700 hover:bg-gray-100"
               }`}
               onClick={() => setActiveTab("fixtures")}
             >
@@ -176,10 +195,10 @@ export default function FixturesLeaderboard() {
             </button>
             <button
               type="button"
-              className={`px-4 py-2 text-sm font-medium rounded-r-lg ${
+              className={`rounded-full px-5 py-2.5 text-sm font-semibold transition ${
                 activeTab === "archive"
-                  ? "bg-[#9E1B32] text-white"
-                  : "bg-white text-gray-900 border border-gray-200 hover:bg-gray-100"
+                  ? "bg-[#9E1B32] text-white shadow-md"
+                  : "text-gray-700 hover:bg-gray-100"
               }`}
               onClick={() => setActiveTab("archive")}
             >
@@ -190,15 +209,15 @@ export default function FixturesLeaderboard() {
 
         {activeTab === "fixtures" && tournament && (
           <div>
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold">{tournament.tournamentName}</h2>
+            <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">{tournament.tournamentName}</h2>
               <button
                 onClick={simulateRace}
                 disabled={simulatingRace}
-                className={`inline-flex items-center px-4 py-2 rounded-md ${
+                className={`inline-flex items-center rounded-full px-5 py-2.5 text-sm font-semibold shadow-md transition ${
                   simulatingRace
-                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                    : "bg-[#9E1B32] text-white hover:bg-[#7A1526]"
+                    ? "cursor-not-allowed bg-gray-300 text-gray-500"
+                    : "bg-[#9E1B32] text-white hover:bg-[#7A1526] hover:shadow-lg"
                 }`}
               >
                 {simulatingRace ? (
@@ -216,8 +235,8 @@ export default function FixturesLeaderboard() {
             </div>
 
             {currentRace && (
-              <div className="mb-8 p-4 border-2 border-[#9E1B32] rounded-lg bg-red-50 animate-pulse">
-                <h3 className="text-xl font-bold text-center mb-2">Race in Progress</h3>
+              <div className="mb-8 animate-pulse rounded-2xl border-2 border-[#9E1B32] bg-gradient-to-r from-red-50 to-white p-5 shadow-lg shadow-red-100">
+                <h3 className="mb-2 text-center text-xl font-bold text-[#9E1B32]">Race in Progress</h3>
                 <div className="flex justify-center items-center space-x-4">
                   <div className="text-right font-semibold">{currentRace.player1?.name}</div>
                   <div className="text-[#9E1B32] font-bold">VS</div>
@@ -226,7 +245,8 @@ export default function FixturesLeaderboard() {
               </div>
             )}
 
-            <div className="tournament-bracket relative">
+            <div className="overflow-x-auto pb-2">
+              <div className="tournament-bracket relative min-w-[860px]">
               {tournament.rounds.map((round, roundIndex) => (
                 <div key={roundIndex} className={`round round-${roundIndex}`}>
                   <h3 className="text-xl font-semibold mb-4 text-center">{round.name}</h3>
@@ -306,25 +326,33 @@ export default function FixturesLeaderboard() {
                 <div className="connector sf-f-4"></div>
               </div>
             </div>
+            </div>
           </div>
         )}
 
         {activeTab === "archive" && tournament?.archive && (
           <div className="space-y-8">
             {tournament.archive.map((archived, index) => (
-              <div key={index} className="border rounded-lg p-6 bg-gray-50">
-                <h2 className="text-2xl font-bold mb-4">
-                  {archived.tournamentName} ({archived.year})
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="rounded-2xl border border-gray-100 bg-white/90 p-6 shadow-xl shadow-gray-200/60 backdrop-blur-sm sm:p-8"
+              >
+                <h2 className="mb-6 text-2xl font-bold text-gray-900">
+                  {archived.tournamentName}{" "}
+                  <span className="text-[#9E1B32]">({archived.year})</span>
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                   {archived.rounds.map((round, rIndex) => (
                     <div key={rIndex}>
-                      <h3 className="text-lg font-semibold mb-2">{round.name}</h3>
+                      <h3 className="mb-3 text-lg font-semibold text-[#9E1B32]">{round.name}</h3>
                       <div className="space-y-3">
                         {round.matches.map((match) => (
                           <div
                             key={match.id}
-                            className="border border-gray-200 rounded-md p-3 bg-white"
+                            className="rounded-xl border border-gray-100 bg-gradient-to-br from-white to-slate-50/80 p-3 shadow-sm"
                           >
                             <div className="flex justify-between text-sm font-medium mb-1">
                               <span
@@ -365,14 +393,15 @@ export default function FixturesLeaderboard() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         )}
       </main>
+      </div>
 
-      <footer className="bg-[#9E1B32] text-white py-8 mt-12">
-        <div className="container mx-auto px-4 text-center">
+      <footer className="relative mt-12 overflow-hidden border-t border-white/10 bg-gradient-to-br from-[#7A1526] via-[#9E1B32] to-[#4a0d18] py-10 text-white">
+        <div className="container relative z-10 mx-auto px-4 text-center text-sm text-white/80">
           <p>&copy; 2026 UA Brain Drone Race Team. All rights reserved.</p>
         </div>
       </footer>
