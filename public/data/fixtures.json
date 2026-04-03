@@ -1,80 +1,80 @@
 {
-  "tournamentName": "Spring 2026 Brain Drone Racing Championship (TBD)",
+  "tournamentName": "Spring 2026 Brain Drone Racing Championship",
   "rounds": [
     {
-      "name": "Quarter Finals (TBD)",
+      "name": "Quarter Finals",
       "matches": [
         {
           "id": 1,
-          "player1": { "id": 1, "name": "TBD" },
-          "player2": { "id": 5, "name": "TBD" },
+          "player1": { "id": 11, "name": "Dylan Iovino" },
+          "player2": { "id": 8, "name": "Priyanshu Sethi" },
           "status": "scheduled",
           "winner": null,
           "time": "TBD",
-          "time1": "TBD",
-          "time2": "TBD"
+          "time1": "Rank 1",
+          "time2": "Rank 8"
         },
         {
           "id": 2,
-          "player1": { "id": 2, "name": "TBD" },
-          "player2": { "id": 7, "name": "TBD" },
+          "player1": { "id": 1, "name": "Peter Deverdzic" },
+          "player2": { "id": 9, "name": "Ishit Bansal" },
           "status": "scheduled",
           "winner": null,
           "time": "TBD",
-          "time1": "TBD",
-          "time2": "TBD"
+          "time1": "Rank 2",
+          "time2": "Rank 7"
         },
         {
           "id": 3,
-          "player1": { "id": 3, "name": "TBD" },
-          "player2": { "id": 6, "name": "TBD" },
+          "player1": { "id": 4, "name": "Justice Henry" },
+          "player2": { "id": 6, "name": "Kavya Gupta" },
           "status": "scheduled",
           "winner": null,
           "time": "TBD",
-          "time1": "TBD",
-          "time2": "TBD"
+          "time1": "Rank 3",
+          "time2": "Rank 6"
         },
         {
           "id": 4,
-          "player1": { "id": 4, "name": "TBD" },
-          "player2": { "id": 5, "name": "TBD" },
+          "player1": { "id": 7, "name": "Gaurav Shrivastava" },
+          "player2": { "id": 10, "name": "Aleena Hamlin" },
           "status": "scheduled",
           "winner": null,
           "time": "TBD",
-          "time1": "TBD",
-          "time2": "TBD"
+          "time1": "Rank 4",
+          "time2": "Rank 5"
         }
       ]
     },
     {
-      "name": "Semi Finals (TBD)",
+      "name": "Semi Finals",
       "matches": [
         {
           "id": 5,
-          "player1": { "id": 1, "name": "TBD" },
-          "player2": { "id": 2, "name": "TBD" },
-          "status": "scheduled",
+          "player1": null,
+          "player2": null,
+          "status": "pending",
           "winner": null,
           "time": "TBD"
         },
         {
           "id": 6,
-          "player1": { "id": 3, "name": "TBD" },
-          "player2": { "id": 5, "name": "TBD" },
-          "status": "scheduled",
+          "player1": null,
+          "player2": null,
+          "status": "pending",
           "winner": null,
           "time": "TBD"
         }
       ]
     },
     {
-      "name": "Final (TBD)",
+      "name": "Final",
       "matches": [
         {
           "id": 7,
-          "player1": { "id": 2, "name": "TBD" },
-          "player2": { "id": 3, "name": "TBD" },
-          "status": "scheduled",
+          "player1": null,
+          "player2": null,
+          "status": "pending",
           "winner": null,
           "time": "TBD"
         }
