@@ -1,37 +1,42 @@
 {
   "tournamentName": "Spring 2026 Brain Drone Racing Championship",
+  "raceInProgress": {
+    "player1Id": 0,
+    "player2Id": 0
+  },
   "rounds": [
     {
       "name": "Quarter Finals",
       "matches": [
         {
           "id": 1,
-          "player1": { "id": 11, "name": "Dylan Iovino" },
+          "player1": { "id": 11, "name": "Kendall F" },
           "player2": { "id": 8, "name": "Priyanshu Sethi" },
           "status": "scheduled",
-          "winner": null,
-          "time": "TBD",
-          "time1": "Rank 1",
-          "time2": "Rank 8"
-        },
-        {
-          "id": 2,
-          "player1": { "id": 1, "name": "Peter Deverdzic" },
-          "player2": { "id": 9, "name": "Ishit Bansal" },
-          "status": "scheduled",
-          "winner": null,
-          "time": "TBD",
-          "time1": "Rank 2",
+          "winner": 11,
+          "time": "Now",
+          "time1": "Rank 8",
           "time2": "Rank 7"
         },
+
         {
-          "id": 3,
+          "id": 2,
           "player1": { "id": 4, "name": "Justice Henry" },
           "player2": { "id": 6, "name": "Kavya Gupta" },
           "status": "scheduled",
-          "winner": null,
-          "time": "TBD",
-          "time1": "Rank 3",
+          "winner": 6,
+          "time": "Now",
+          "time1": "Rank 2",
+          "time2": "Rank 5"
+        },
+        {
+          "id": 3,
+          "player1": { "id": 1, "name": "Peter Deverdzic" },
+          "player2": { "id": 9, "name": "Ishit Bansal" },
+          "status": "scheduled",
+          "winner": 9,
+          "time": "Now",
+          "time1": "Rank 1",
           "time2": "Rank 6"
         },
         {
@@ -39,10 +44,10 @@
           "player1": { "id": 7, "name": "Gaurav Shrivastava" },
           "player2": { "id": 10, "name": "Aleena Hamlin" },
           "status": "scheduled",
-          "winner": null,
-          "time": "TBD",
-          "time1": "Rank 4",
-          "time2": "Rank 5"
+          "winner": 7,
+          "time": "Now",
+          "time1": "Rank 3",
+          "time2": "Rank 4"
         }
       ]
     },
@@ -51,19 +56,23 @@
       "matches": [
         {
           "id": 5,
-          "player1": null,
-          "player2": null,
+          "player1": { "id": 11, "name": "Kendall F" },
+          "player2": { "id": 6, "name": "Kavya Gupta" },
           "status": "pending",
-          "winner": null,
-          "time": "TBD"
+          "winner": 6,
+          "time": "Now",
+          "time1": "Rank 8",
+          "time2": "Rank 5"
         },
         {
           "id": 6,
-          "player1": null,
-          "player2": null,
+          "player2": { "id": 7, "name": "Gaurav Shrivastava" },
+          "player1": { "id": 9, "name": "Ishit Bansal" },
           "status": "pending",
-          "winner": null,
-          "time": "TBD"
+          "winner": 7,
+          "time": "Now",
+          "time1": "Rank 3",
+          "time2": "Rank 6"
         }
       ]
     },
@@ -72,11 +81,13 @@
       "matches": [
         {
           "id": 7,
-          "player1": null,
-          "player2": null,
+          "player1": { "id": 6, "name": "Kavya Gupta" },
+          "player2": { "id": 7, "name": "Gaurav Shrivastava" },
           "status": "pending",
-          "winner": null,
-          "time": "TBD"
+          "winner": 7,
+          "time": "Now",
+          "time1": "Rank 5",
+          "time2": "Rank 3"
         }
       ]
     }

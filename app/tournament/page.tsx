@@ -29,10 +29,26 @@ interface Round {
   matches: Match[]
 }
 
+interface RaceInProgress {
+  player1Id: number | null
+  player2Id: number | null
+}
+
 interface Tournament {
   tournamentName: string
   rounds: Round[]
   archive?: ArchivedTournament[]
+  raceInProgress?: RaceInProgress
+}
+
+function findPlayerById(tournament: Tournament, id: number): Player | null {
+  for (const round of tournament.rounds) {
+    for (const match of round.matches) {
+      if (match.player1?.id === id) return match.player1
+      if (match.player2?.id === id) return match.player2
+    }
+  }
+  return null
 }
 
 interface ArchivedTournament {
@@ -142,6 +158,25 @@ export default function FixturesLeaderboard() {
     }, 5000)
   }
 
+  const rp = tournament?.raceInProgress
+  const raceP1 = rp?.player1Id
+  const raceP2 = rp?.player2Id
+  const hasRacePlayerIds =
+    raceP1 != null && raceP1 !== 0 && raceP2 != null && raceP2 !== 0
+  const hideRaceInProgressFromJson = !rp || !hasRacePlayerIds
+
+  const player1NameFromJson =
+    tournament && hasRacePlayerIds
+      ? findPlayerById(tournament, raceP1!)?.name ?? "Unknown"
+      : "TBD"
+  const player2NameFromJson =
+    tournament && hasRacePlayerIds
+      ? findPlayerById(tournament, raceP2!)?.name ?? "Unknown"
+      : "TBD"
+
+  const showRaceInProgressBox =
+    (simulatingRace && currentRace) || (!hideRaceInProgressFromJson && !!tournament)
+
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-slate-50 to-white">
@@ -234,13 +269,17 @@ export default function FixturesLeaderboard() {
               </button>
             </div>
 
-            {currentRace && (
+            {showRaceInProgressBox && (
               <div className="mb-8 animate-pulse rounded-2xl border-2 border-[#9E1B32] bg-gradient-to-r from-red-50 to-white p-5 shadow-lg shadow-red-100">
                 <h3 className="mb-2 text-center text-xl font-bold text-[#9E1B32]">Race in Progress</h3>
                 <div className="flex justify-center items-center space-x-4">
-                  <div className="text-right font-semibold">{currentRace.player1?.name}</div>
+                  <div className="text-right font-semibold">
+                    {simulatingRace && currentRace ? currentRace.player1?.name : player1NameFromJson}
+                  </div>
                   <div className="text-[#9E1B32] font-bold">VS</div>
-                  <div className="text-left font-semibold">{currentRace.player2?.name}</div>
+                  <div className="text-left font-semibold">
+                    {simulatingRace && currentRace ? currentRace.player2?.name : player2NameFromJson}
+                  </div>
                 </div>
               </div>
             )}
